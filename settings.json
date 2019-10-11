@@ -1,0 +1,86 @@
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
+  "SettingsVersion": 1.2,
+  "CameraDefaults": {
+      "CaptureSettings": [
+        {
+          "ImageType": 1,
+          "Width": 144,
+          "Height": 256,
+          "FOV_Degrees": 90,
+          "AutoExposureSpeed": 100,
+          "MotionBlurAmount": 0
+        }
+    ]
+  },
+  "SimMode": "Car",
+  "ClockSpeed": 1.0,
+  "ViewMode": "",
+  "RpcEnabled": true,
+  "EngineSound": true,
+  
+  "Vehicles": {
+        "Car1": {
+            "VehicleType": "PhysXCar",
+            "AutoCreate": true,
+      "RC": {
+        "RemoteControlID": 0,
+        "AllowAPIWhenDisconnected": false
+      },
+            "Sensors": {
+                "Gps": {
+                    "SensorType": 3,
+                    "Enabled" : true
+                },
+		"Imu" : {
+              	   "SensorType": 2,
+          	   "Enabled": true
+        	},
+                "LidarSensor1": { 
+                    "SensorType": 6,
+                    "Enabled" : true,
+                    "NumberOfChannels": 32,
+                    "Range": 100,
+                    "RotationsPerSecond": 10,
+                    "PointsPerSecond": 100000,
+                    "X": 0, "Y": 0, "Z": -1,
+                    "Roll": 0, "Pitch": 0, "Yaw" : 0,
+                    "VerticalFOVUpper": 15,
+                    "VerticalFOVLower": -25,
+                    "DrawDebugPoints": false,
+                    "DataFrame": "SensorLocalFrame"
+                }
+            },
+		"Cameras": {
+	 "front_left_custom": {
+          "CaptureSettings": [
+            {
+              "PublishToRos": 1,
+              "ImageType": 0,
+              "Width": 672,
+              "Height": 376,
+              "FOV_Degrees": 90,
+              "TargetGamma": 1.5
+            }, 
+            {
+              "PublishToRos": 1,
+              "ImageType": 1,
+              "Width": 672,
+              "Height": 376,
+              "FOV_Degrees": 90,
+              "TargetGamma": 1.5
+            }
+          ],
+          "X": 0.50, "Y": -0.06, "Z": -1.50,
+          "Pitch": 0.0, "Roll": 0.0, "Yaw": 0.0
+        }
+
+      },
+      "X": 2, "Y": 0, "Z": 0,
+      "Pitch": 0, "Roll": 0, "Yaw": 0
+    }
+  }
+        }
+    
+  
+

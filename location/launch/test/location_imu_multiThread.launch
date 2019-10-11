@@ -1,0 +1,25 @@
+<launch>
+
+  <arg name="rviz" default="true" />
+  <param name="use_sim_time" value="true" />
+
+  <node pkg="location" type="locationSiZuWithIMU_multiThread" name="locationSiZuWithIMU_multiThread"  output="screen">
+    <param name="VLPType" value="HDL_32E"/>
+    <param name="MapPCDFileName" value="$(find location)/map/cscFloor1.pcd"/>
+    <param name="LiDARName" value="/velodyne_packets"/>
+    <param name="imuSyncDataName" value="/imu/data_withSync"/>
+    <param name="utcDataName" value="/stm32/utc_data"/>
+    <param name="useImuToCorrectPointCloud" value="true"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="link2_broadcaster" args="0.0 0 0.65 0 0 0 base_link velodyne 1" />
+  <node pkg="tf" type="static_transform_publisher" name="link3_broadcaster" args="0.0 0 0.55 0 0 0 base_link imu 1" />
+  <node pkg="tf" type="static_transform_publisher" name="link4_broadcaster" args="0.0 0 0.0 0 0 0 map odom 1" />
+
+
+  <group if="$(arg rviz)">
+    <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find location)/rviz_cfg/imu.rviz" />
+  </group>
+
+
+</launch>

@@ -1,0 +1,30 @@
+<launch>
+
+  <arg name="rviz" default="true" />
+  <param name="use_sim_time" value="true" />
+
+  <node pkg="location" type="location_imuV2" name="location_imuV2"  output="screen">
+    <param name="mapPCDFileName" value="$(find location)/map/yuquan50cm.pcd"/>
+    <param name="VLPType" value="VLP_16"/>
+    <param name="imuWithSyncName" value="/imu/data_withSync"/>
+    <param name="utcName" value="/stm32/utc_data"/>
+    <param name="lidarName" value="velodyne_packets"/>
+    <param name="enableSwitchLidarData" value="false"/>
+    <param name="switchBufferSize" value="4"/>
+    <param name="enablePublishGlobalDenseMap" value="false"/>
+
+
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="link2_broadcaster" args="0.0 0 0.85 0 0 0 base_link velodyne 20" />
+  <node pkg="tf" type="static_transform_publisher" name="link3_broadcaster" args="0.0 0 0.8 0 0 0 base_link imu 20" />
+  <node pkg="tf" type="static_transform_publisher" name="link4_broadcaster" args="0.0 0 0.0 0 0 0 map odom 20" />
+
+  <node name="MapServer" pkg="map_server" type="map_server" output="screen" args="$(find location)/map/yuquan10cm.yaml"/>
+
+  <group if="$(arg rviz)">
+    <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find location)/rviz_cfg/lidar_imu.rviz" />
+  </group>
+
+
+</launch>
