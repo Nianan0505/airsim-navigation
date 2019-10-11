@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # airsim仿真导航
 
 # 环境配置
@@ -428,3 +429,7 @@ _pkg中，接口可以在airsim中的AirLib中看到
 - CMakeLists中 `set(AIRSIM_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../../AirSim-v.1.2.2/)`需要根据实际路径修改；
 
 编译完成后，可以运行`airsim_node`这个节点，airsim_settings_parser.cpp主要是用settings
+=======
+# airsim-navigation
+location and navigation by car in airsim
+>>>>>>> 1145f15f31c6561de1d2a2bdd62a81893d970f00
